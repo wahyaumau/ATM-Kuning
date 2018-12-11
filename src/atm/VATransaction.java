@@ -1,0 +1,39 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package atm;
+
+/**
+ *
+ * @author protege
+ */
+public class VATransaction extends Transaction{
+   private Keypad keypad; // reference to keypad   
+   private final static int CANCELED = 0; // constant for cancel option    
+   private String code;      
+
+    public VATransaction(Keypad keypad, int userAccountNumber, Screen atmScreen, BankDatabase atmBankDatabase) {
+        super(userAccountNumber, atmScreen, atmBankDatabase);
+        this.keypad=new Keypad();
+    }
+        
+        
+
+    @Override
+    public void execute() {
+        screen.displayMessage("Input code : ");
+        code = keypad.getString();
+        if(getBankDatabase().getAccount(getAccountNumber()).getVA(code)!=null){            
+            if(getBankDatabase().getTotalBalance(getAccountNumber())>
+                    getBankDatabase().getAccount(getAccountNumber()).getVA(code).getBill()){
+                getBankDatabase().debit(getAccountNumber(), getBankDatabase().
+                    getAccount(getAccountNumber()).getVA(code).getBill());
+                getBankDatabase().credit(getBankDatabase().getAccount(getAccountNumber()).getVA(code).getAccountReceiver(), 
+                    getBankDatabase().getAccount(getAccountNumber()).getVA(code).getBill());
+            }else screen.displayMessageLine("Insufficient fund");
+        }else screen.displayMessageLine("You don't have that bill");
+    }
+    
+}
