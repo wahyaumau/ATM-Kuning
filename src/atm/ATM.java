@@ -79,7 +79,7 @@ public class ATM {
 
    // attempts to authenticate user against database
    private void authenticateUser(){
-        screen.displayMessage("\nPlease enter your account number : ");
+        screen.displayMessage("\nPlease enter your account number (or 0 to recover account): ");
         int accountNumber = keypad.getInput();
         if(bankDatabase.isAccountExist(accountNumber)){
             int iBlok=0;
@@ -114,6 +114,21 @@ public class ATM {
           bankDatabase.RecoverAccount(accountNumber);
          }
         }
+        }else if (accountNumber == 0){
+               screen.displayMessage("\nPlease enter account number you want to recover : ");
+               accountNumber = keypad.getInput();
+             if(bankDatabase.isAccountExist(accountNumber)){
+                 int confirm;
+                 screen.displayMessageLine("Your account has been suspended, please contact us to unsuspend your account");
+                 bankDatabase.blockAccount(accountNumber);
+                 screen.displayMessageLine("Do you want to recover your Account? It cost you 10% of your money");
+                 screen.displayMessageLine("1. Yes");
+                 screen.displayMessageLine("2. No");
+                 confirm = keypad.getInput();
+                 if( confirm == 1){
+                 bankDatabase.RecoverAccount(accountNumber);
+         }
+             }
         }
    }
 
