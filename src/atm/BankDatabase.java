@@ -19,7 +19,7 @@ public class BankDatabase {
       accounts[0] = new Account(1234, 4321, 1000.0, 1200.0);
       accounts[1] = new Account(8765, 5678, 200.0, 200.0);  
       accounts[2] = new Account(12345, 54321, 1000.0, 1200.0);  
-      accounts[3] = new Account(9999, 9999, 0, 0); //akun admin
+      accounts[3] = new Account(9998, 9999, 0, 0); //akun admin
       accounts[4] = new Account(23456,65432, 0, 0);//penjual tiket kereta
       accounts[5] = new Account(34567,76543, 0, 0);//penjual akun Garuda Indonesia
       accounts[6] = new Account(45678,87654, 0, 0);//penjual akun Lion Air
