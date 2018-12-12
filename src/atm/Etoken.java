@@ -36,7 +36,7 @@ public class Etoken extends Transaction {
                    super.getScreen().displayMessage("\nTransaction to Customer ID : ");
                    super.getScreen().displayMessage(CustomerID);
                    super.getScreen().displayMessage("\nToken : ");
-                   System.out.print(Token);
+                   System.out.print(Token*100);
                    super.getScreen().displayMessage("\nTotal Payment :");
                    super.getScreen().displayDollarAmount(Token);
                    super.getScreen().displayMessage(" is Succesfull...");
@@ -47,11 +47,11 @@ public class Etoken extends Transaction {
        Screen s = getScreen();
        s.displayMessage("\nPlease insert your Customer ID : ");
        String input = keypad.getString();
-       while(input.length()!=16){
-              if (input.length()!=16){
+       while((input.length()!=16) || (!input.matches("[0-9]*"))){
+              if ((input.length()!=16) || (!input.matches("[0-9]*"))){
                  super.getScreen().displayMessage("Incorect ID...");
                 }
-            s.displayMessage("\nPlease insert your phone number : ");
+            s.displayMessage("\nPlease insert Customer ID : ");
             input = keypad.getString();
 
        }
