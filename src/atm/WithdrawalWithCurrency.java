@@ -31,7 +31,7 @@ public class WithdrawalWithCurrency extends Transaction {
       cashDispenser = atmCashDispenser;
       
    }
-
+ 
    // perform transaction
    @Override
    public void execute() {
