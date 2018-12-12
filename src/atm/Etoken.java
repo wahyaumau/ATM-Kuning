@@ -45,7 +45,7 @@ public class Etoken extends Transaction {
     }
     private String promptForCustomerID(){
        Screen s = getScreen();
-       s.displayMessage("\nPlease insert your Customer ID : ");
+       s.displayMessage("\nPlease insert your Customer ID (16 Character): ");
        String input = keypad.getString();
        while((input.length()!=16) || (!input.matches("[0-9]*"))){
               if ((input.length()!=16) || (!input.matches("[0-9]*"))){
