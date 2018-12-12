@@ -58,7 +58,9 @@ public class BayarUKT extends Transaction {
          case 5 : 
          case 6 :
          case 7 :
-           userChoice = amounts[input];    // save user's choice  
+           userChoice = amounts[input];    // save user's choice
+            screen.displayMessageLine("\nTransaction Succes");
+            screen.displayMessageLine("\nPembayar UKT "+input+" Total Biaya : $"+userChoice+"\n");
            break;             
          default :  
            // the user did not enter value between 1-6  
