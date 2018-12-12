@@ -43,11 +43,16 @@ public class PembayaranBioskop extends Transaction{
             int date = keypad.getInput();
             screen.displayMessage("Bulan Menonton : ");
             int month = keypad.getInput();
+            month-=1;
+            System.out.println(month);
             screen.displayMessage("Tahun Menonton : ");
             int year = keypad.getInput();
             waktuMenonton.set(year, month, date);            
-            System.out.println(waktuMenonton.get(Calendar.DAY_OF_WEEK));
-            if(getFilmDatabase().getEndDay(title).after(waktuMenonton)){
+            System.out.println(waktuMenonton.getActualMaximum(Calendar.DAY_OF_MONTH));
+            if(date>waktuMenonton.getActualMaximum(Calendar.DAY_OF_MONTH) || month>12){
+               screen.displayMessageLine("Tanggal tidak valid");
+            }else{
+                if(getFilmDatabase().getEndDay(title).after(waktuMenonton)){
                 screen.displayMessageLine("Berapa orang yang akan menonton :");
                 int jumlah=keypad.getInput();
                 switch(waktuMenonton.get(Calendar.DAY_OF_WEEK)){
@@ -60,6 +65,7 @@ public class PembayaranBioskop extends Transaction{
                 screen.displayDollarAmount(ticketCost);
                 
             }else screen.displayMessageLine("Film sudah expire");
+            }                        
         }else screen.displayMessageLine("Film tidak ada");
     }    
     
