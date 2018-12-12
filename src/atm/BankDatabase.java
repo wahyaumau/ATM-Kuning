@@ -21,7 +21,7 @@ public class BankDatabase {
       accounts[2] = new Account(12345, 54321, 3500.0, 5010.0);  
       accounts[3] = new Account(9998, 9999, 0, 0); //akun admin
       accounts[4] = new Account(23456,65432, 0, 0);//penjual tiket kereta
-      accounts[5] = new Account(34567,76543, 0, 0);//penjual akun Garuda Indonesia
+      accounts[5] = new Account(34567,76543, 1000, 1000);//penjual akun Garuda Indonesia
       accounts[6] = new Account(45678,87654, 0, 0);//penjual akun Lion Air
       accounts[7] = new Account(11111,11111, 0, 0);//Virtual account
    }   
