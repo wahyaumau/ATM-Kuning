@@ -26,7 +26,7 @@ public class TransferToMany extends Transaction{
         looping=new manyTransfer();
         int i = looping.getLoop();
         for(int a=0;a<i;a++){
-        screen.displayMessageLine("input account for transfer :");
+        screen.displayMessageLine("input account for transfer (or 0 to cancel):");
         accountReceiver = promptForTransferReceiver();
         if(super.getBankDatabase().isAccountExist(accountReceiver)){
             screen.displayMessageLine("\ninput amount for transfer :");
