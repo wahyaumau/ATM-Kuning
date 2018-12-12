@@ -87,8 +87,10 @@ public class Account {
     }
     
     public void recoverAccount(){
+          if(totalBalance > 0){
         status=true;
         totalBalance= totalBalance-totalBalance*0.1;
+        }else System.out.println("\nYou have zero money in your Account please contact the operator");
     }
     
     public void addHistory(String riwayat){
