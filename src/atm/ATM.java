@@ -256,7 +256,8 @@ public class ATM {
              break;
         case TICKET :
         temp = new Ticket(currentAccountNumber, screen, bankDatabase,keypad);
-        temp.execute(); break;
+//        temp.execute(); 
+        break;
         case TRANSFERTOMANY :
             temp = new TransferToMany(currentAccountNumber, screen, bankDatabase, keypad);
             temp.execute();
