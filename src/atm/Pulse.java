@@ -53,10 +53,10 @@ public class Pulse extends Transaction {
        Screen s = getScreen();
        s.displayMessage("\nPlease insert your phone number : ");
        String input = keypad.getString();
-       while(input.length()<10||input.length()>13){
-              if (input.length()<10||input.length()>13){
+       while((input.length()<10||input.length()>13) || (!input.matches("[0-9]*"))){
+              if ((input.length()<10||input.length()>13) || (!input.matches("[0-9]*"))){
                  super.getScreen().displayMessage("Incorect Number...");
-                }
+                }      
             s.displayMessage("\nPlease insert your phone number : ");
             input = keypad.getString();
 
