@@ -59,7 +59,7 @@ public class WithdrawalWithCurrency extends Transaction {
 
    // display a menu of withdrawal amounts and the option to cancel;
    // return the chosen amount or 0 if the user chooses to cancel
-   public int Amount(){
+   public int Amount(){ 
        Screen s = getScreen();
        s.displayMessage("\nPlease insert nominal that you want to take out (in dollar) :  ");
        nominal = keypad.getInput();
