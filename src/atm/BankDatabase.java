@@ -17,7 +17,7 @@ public class BankDatabase {
    public BankDatabase() {
       accounts = new Account[8]; // just 2 accounts for testing
       accounts[0] = new Account(1234, 4321, 4000.0,5000.0);
-      accounts[1] = new Account(8765, 5678, 200.0, 200.0);  
+      accounts[1] = new Account(8765, 5678, 2500.0, 200.0);  
       accounts[2] = new Account(12345, 54321, 3500.0, 5010.0);  
       accounts[3] = new Account(9998, 9999, 0, 0); //akun admin
       accounts[4] = new Account(23456,65432, 0, 0);//penjual tiket kereta
