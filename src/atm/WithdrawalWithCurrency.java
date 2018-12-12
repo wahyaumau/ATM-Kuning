@@ -37,7 +37,8 @@ public class WithdrawalWithCurrency extends Transaction {
    public void execute() {
        amount = Amount();
      //  System.out.println(amount);
-       if(amount == CANCELED)
+      display = displayMenuOfCurrency();
+       if(display == CANCELED)
            super.getScreen().displayMessageLine("Canceling Transaction ...");
        else {
            if(amount % 20!=0 || amount<20){
@@ -47,7 +48,6 @@ public class WithdrawalWithCurrency extends Transaction {
                if (super.getBankDatabase().getAvailableBalance(super.getAccountNumber()) >= amount){
                    cashDispenser.dispenseCash(amount);
                    super.getBankDatabase().debit(super.getAccountNumber(), amount);
-                   display = displayMenuOfCurrency(); 
                    System.out.println("Your cash has been dispensed. please take your cash now");
                } 
                    
@@ -176,7 +176,7 @@ public class WithdrawalWithCurrency extends Transaction {
                screen.displayMessageLine(
                   "\nInvalid selection. Try again.");
          } 
-         userChoice=1;
+         userChoice=input;
       } 
 
       return userChoice;
