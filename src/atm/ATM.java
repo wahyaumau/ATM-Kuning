@@ -170,7 +170,7 @@ public class ATM {
             case CHANGE:
                 System.out.println("PIN baru: ");
                 int x = keypad.getInput();
-                while (x <= 10000 || x > 99999)
+                while (x <= 00000 || x > 99999)
                 {
                     System.out.println("PIN tak boleh lebih atau kurang dari 5 digit!");
                     System.out.println("Input kembali: ");
