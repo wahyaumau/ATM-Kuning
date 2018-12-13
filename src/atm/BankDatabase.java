@@ -5,6 +5,8 @@
  */
 package atm;
 
+import java.util.Iterator;
+
 /**
  *
  * @author protege
@@ -92,11 +94,20 @@ public class BankDatabase {
        getAccount(userAccountNumber).addHistory(history);
    }
    
-   public void tampilHistory(int userAccountNumber)
+public void tampilHistory(int userAccountNumber)
    {
-       while (getAccount(userAccountNumber).getHistory().isEmpty() != true)
+       
+       Iterator<String> itr = getAccount(userAccountNumber).getHistory().iterator();
+       if (getAccount(userAccountNumber).getHistory().isEmpty())
        {
-           System.out.println(getAccount(userAccountNumber).getHistory().pop());
+           System.out.println("Tidak ada riwaat transaksi");
+       }
+       else
+       {
+        while (itr.hasNext())
+        {
+               System.out.println(itr.next());
+        }
        }
    }
    
