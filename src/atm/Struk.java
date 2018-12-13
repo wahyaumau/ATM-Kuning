@@ -23,6 +23,11 @@ public class Struk {
         this.account = userAccountNumber;
         
     }
+    private void bar()
+    {
+        System.out.println("        Struk Transaksi              ");
+        System.out.println("=====================================");
+    }
         
     public void CetakStruk (int strukFor, int receiver)
     {
@@ -31,24 +36,21 @@ public class Struk {
         switch(strukFor)
         {
             case WITHDRAWAL:
-                System.out.println("        Struk Transaksi              ");
-                System.out.println("=====================================");
+                bar();
                 System.out.println("Akun: " + account);
                 System.out.println("Anda telah menarik uang sebesar: $" + amount);
                 System.out.println("pada waktu " + dtf.format(now));
                 System.out.println("   Terima kasih telah berlayanan");
                 break;
             case DEPOSIT:
-                System.out.println("          Struk Transaksi           ");
-                System.out.println("====================================");
+                bar();
                 System.out.println("Akun: " + account);
                 System.out.println("Anda telah menyimpan uang sebesar: $" + amount);
                 System.out.println("pada waktu " + dtf.format(now));
                 System.out.println("   Terima kasih telah berlayanan");
                 break;
             case TRANSFER:
-                System.out.println("        Struk Transaksi              ");
-                System.out.println("===========================================");
+                bar();
                 System.out.println("Akun: " + account);
                 System.out.println("Anda telah mentransfer uang sebesar: $" + amount);
                 System.out.println("ke akun: " + receiver);
