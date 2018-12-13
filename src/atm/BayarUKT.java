@@ -5,6 +5,9 @@
  */
 package atm;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 /**
  *
  * @author protege
@@ -26,6 +29,10 @@ public class BayarUKT extends Transaction {
        super.getBankDatabase().debit(getAccountNumber(), UKT);
        super.getBankDatabase().credit(AccountReceiver, UKT);
    }
+   DateTimeFormatter dtf = DateTimeFormatter.ofPattern("HH:mm:ss dd/MM/yyyy");
+       LocalDateTime now = LocalDateTime.now();
+   super.getBankDatabase().tulisHistory(super.getAccountNumber(),"Membayar UKT sebesar" + UKT + " " +
+           dtf.format(now));
    }
    
     private int displayMenuOfAmounts(){  
