@@ -5,6 +5,9 @@
  */
 package atm;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 /**
  *
  * @author protege
@@ -40,9 +43,19 @@ public class Ticket extends Transaction {
                     String Rute = super.getBankDatabase().getRutePesawat(Kd);
                     String M = super.getBankDatabase().getMaskapaiPesawat(Kd);
                     if(super.getBankDatabase().getAvailableBalance(super.getAccountNumber()) >= amount){
+                        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("HH:mm:ss dd/MM/yyyy");
+                        LocalDateTime now = LocalDateTime.now();
                         super.getBankDatabase().debit(getAccountNumber(),amount); // Balance akun saya berkurang
-                        if (pil==1) super.getBankDatabase().credit(34567,amount); //Asumsi : Akun penjual Tiket Garuda Indonesia
-                        else super.getBankDatabase().credit(45678,amount); //Asumsi : Akun penjual Tiket Lion Air
+                        if (pil==1){
+                            super.getBankDatabase().credit(34567,amount);
+                            super.getBankDatabase().tulisHistory(super.getAccountNumber(),"Membayar tiket pesawat Garuda Indonesia seharga $" + amount 
+       + " " + dtf.format(now));
+                        } //Asumsi : Akun penjual Tiket Garuda Indonesia
+                        else{
+                            super.getBankDatabase().credit(45678,amount);
+                            super.getBankDatabase().tulisHistory(super.getAccountNumber(),"Membayar tiket pesawat Lion Air seharga $" + amount 
+       + " " + dtf.format(now));
+                        } //Asumsi : Akun penjual Tiket Lion Air
                         screen.displayMessageLine("\nKode Pembayaran : " + Kd);
                         screen.displayMessageLine("Kode Booking : " + booking);
                         screen.displayMessageLine("Nama : " + NamaP);
@@ -51,7 +64,6 @@ public class Ticket extends Transaction {
                         screen.displayMessageLine("Rute : " + Rute);
                         screen.displayMessageLine("Maskapai : " + M);
                         screen.displayMessageLine("\n ~~ berhasil transfer sebayak $" + amount);
-                        
                     }else screen.displayMessageLine("Balance tidak cukup");      
                 }else screen.displayMessageLine("Kode tiket pesawat tidak tidak valid");
             }else screen.displayMessageLine("Nomor tidak tidak valid");
