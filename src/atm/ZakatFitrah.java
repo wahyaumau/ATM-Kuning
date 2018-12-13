@@ -23,15 +23,27 @@ public class ZakatFitrah extends Transaction{
 
     @Override
     public void execute() {
+        boolean isNumeric = true;
+        boolean start = true;
         screen.displayMessage("Masukkan jumlah anggota keluarga : ");
-        anggotaKeluarga = keypad.getInput();        
-        if(getBankDatabase().getTotalBalance(getAccountNumber())>hargaPokok*anggotaKeluarga){
+        while(start){ 
+        if (keypad.validate()){
+           anggotaKeluarga = keypad.getInput();
+           if(getBankDatabase().getTotalBalance(getAccountNumber())>hargaPokok*anggotaKeluarga){
             getBankDatabase().debit(getAccountNumber(), hargaPokok*anggotaKeluarga);
 //            getBankDatabase().credit(11111, nishab);
-            screen.displayMessageLine("Pembayaran zakat fitrah berhasil");            
+            screen.displayMessageLine("Pembayaran zakat fitrah berhasil");
+            start =false;
         }else{
             screen.displayMessageLine("Uang tidak cukup");
+            start = false;
         }
+        }else {
+        screen.displayMessage("Wrong data type, please insert integer");
         
+        }
+     }
+        
+        }
     }    
-}
+
