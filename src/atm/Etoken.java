@@ -5,6 +5,9 @@
  */
 package atm;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 /**
  *
  * @author protege
@@ -42,6 +45,10 @@ public class Etoken extends Transaction {
                    super.getScreen().displayMessage(" is Succesfull...");
            }
            else super.getScreen().displayMessage("Sorry. Your amount is not enough...");
+       DateTimeFormatter dtf = DateTimeFormatter.ofPattern("HH:mm:ss dd/MM/yyyy");
+       LocalDateTime now = LocalDateTime.now();
+       super.getBankDatabase().tulisHistory(super.getAccountNumber(),"Membeli Etoken bernominal" + Token*100 + "dengan uang seharga " + Token 
+       + " " + dtf.format(now));
     }
     private String promptForCustomerID(){
        Screen s = getScreen();

@@ -100,7 +100,7 @@ public void tampilHistory(int userAccountNumber)
        Iterator<String> itr = getAccount(userAccountNumber).getHistory().iterator();
        if (getAccount(userAccountNumber).getHistory().isEmpty())
        {
-           System.out.println("Tidak ada riwaat transaksi");
+           System.out.println("Tidak ada riwayat transaksi");
        }
        else
        {
