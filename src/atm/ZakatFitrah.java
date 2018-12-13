@@ -5,6 +5,9 @@
  */
 package atm;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 /**
  *
  * @author protege
@@ -36,6 +39,10 @@ public class ZakatFitrah extends Transaction{
             screen.displayMessageLine("Pembayaran zakat fitrah berhasil");
             wrong =false;
             start =false;
+            DateTimeFormatter dtf = DateTimeFormatter.ofPattern("HH:mm:ss dd/MM/yyyy");
+       LocalDateTime now = LocalDateTime.now();
+       super.getBankDatabase().tulisHistory(super.getAccountNumber(),"Membayar Zakat fitrah sebesar $" + hargaPokok*anggotaKeluarga 
+       + " " + dtf.format(now));
         }else{
             screen.displayMessageLine("Uang tidak cukup");
             start = false;
