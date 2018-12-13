@@ -42,7 +42,7 @@ public class Struk {
                 System.out.println("          Struk Transaksi           ");
                 System.out.println("====================================");
                 System.out.println("Akun: " + account);
-                System.out.println("Anda telah menarik uang sebesar: $" + amount);
+                System.out.println("Anda telah menyimpan uang sebesar: $" + amount);
                 System.out.println("pada waktu " + dtf.format(now));
                 System.out.println("   Terima kasih telah berlayanan");
                 break;
