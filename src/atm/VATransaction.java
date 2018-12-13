@@ -5,6 +5,9 @@
  */
 package atm;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 /**
  *
  * @author protege
@@ -32,6 +35,10 @@ public class VATransaction extends Transaction{
                     getAccount(getAccountNumber()).getVA(code).getBill());
                 getBankDatabase().credit(getBankDatabase().getAccount(getAccountNumber()).getVA(code).getAccountReceiver(), 
                     getBankDatabase().getAccount(getAccountNumber()).getVA(code).getBill());
+                DateTimeFormatter dtf = DateTimeFormatter.ofPattern("HH:mm:ss dd/MM/yyyy");
+       LocalDateTime now = LocalDateTime.now();
+       super.getBankDatabase().tulisHistory(super.getAccountNumber(),"Membayar transaksi virtual akun sebesar $" + getBankDatabase().getAccount(getAccountNumber()).getVA(code).getBill()
+       + " " + dtf.format(now));
             }else screen.displayMessageLine("Insufficient fund");
         }else screen.displayMessageLine("You don't have that bill");
     }
