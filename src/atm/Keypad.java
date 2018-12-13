@@ -29,4 +29,11 @@ public class Keypad {
    public String getNextLine(){
        return input.nextLine();
    }
+
+    boolean validate() {
+        if (input.hasNextInt()){
+       return true; 
+       }
+        return false;
+    }
 } 
