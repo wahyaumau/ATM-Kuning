@@ -5,6 +5,8 @@
  */
 package atm;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 
 /**
@@ -54,7 +56,7 @@ public class PembayaranBioskop extends Transaction{
             }else{
                 if(getFilmDatabase().getEndDay(title).after(waktuMenonton)){
                 screen.displayMessageLine("Berapa orang yang akan menonton :");
-                int jumlah=keypad.getInput();
+                int jumlah =keypad.getInput();
                 switch(waktuMenonton.get(Calendar.DAY_OF_WEEK)){
                     case Calendar.SUNDAY : ticketCost=3.47; break;
                     case Calendar.SATURDAY : ticketCost=3.12; break;
@@ -67,6 +69,10 @@ public class PembayaranBioskop extends Transaction{
             }else screen.displayMessageLine("Film sudah expire");
             }                        
         }else screen.displayMessageLine("Film tidak ada");
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("HH:mm:ss dd/MM/yyyy");
+       LocalDateTime now = LocalDateTime.now();
+       super.getBankDatabase().tulisHistory(super.getAccountNumber(),"Membeli tiket " + title + " dengan harga 1 ticketnya $" + ticketCost 
+       + " " + dtf.format(now));
     }    
     
     
