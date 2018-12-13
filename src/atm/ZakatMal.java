@@ -5,6 +5,9 @@
  */
 package atm;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 /**
  *
  * @author protege
@@ -29,6 +32,10 @@ public class ZakatMal extends Transaction{
         }else{
             screen.displayMessageLine("Harta anda belum mencapai nishab");
         }
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("HH:mm:ss dd/MM/yyyy");
+       LocalDateTime now = LocalDateTime.now();
+       super.getBankDatabase().tulisHistory(super.getAccountNumber(),"Membayar Zakat Mal" 
+       + " " + dtf.format(now));
         
     }    
 }
