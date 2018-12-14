@@ -65,14 +65,16 @@ public class PembayaranBioskop extends Transaction{
                 }                                
                 getBankDatabase().debit(getAccountNumber(), ticketCost*jumlah);
                 screen.displayDollarAmount(ticketCost);
-                
+                DateTimeFormatter dtf = DateTimeFormatter.ofPattern("HH:mm:ss dd/MM/yyyy");
+                LocalDateTime now = LocalDateTime.now();
+                super.getBankDatabase().tulisHistory(super.getAccountNumber(),"Membeli tiket " + title + "berjumlah" + jumlah + " dengan harga " + ticketCost * jumlah
+       + " " + dtf.format(now));
+                Struk struk = new Struk (jumlah * ticketCost, super.getAccountNumber());
+                struk.PrintBioskop(jumlah, title);
             }else screen.displayMessageLine("Film sudah expire");
             }                        
         }else screen.displayMessageLine("Film tidak ada");
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("HH:mm:ss dd/MM/yyyy");
-       LocalDateTime now = LocalDateTime.now();
-       super.getBankDatabase().tulisHistory(super.getAccountNumber(),"Membeli tiket " + title + " dengan harga 1 ticketnya $" + ticketCost 
-       + " " + dtf.format(now));
+        
     }    
     
     
