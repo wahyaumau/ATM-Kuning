@@ -43,6 +43,8 @@ public class ZakatFitrah extends Transaction{
        LocalDateTime now = LocalDateTime.now();
        super.getBankDatabase().tulisHistory(super.getAccountNumber(),"Membayar Zakat fitrah sebesar $" + hargaPokok*anggotaKeluarga 
        + " " + dtf.format(now));
+       Struk struk = new Struk(hargaPokok*anggotaKeluarga,super.getAccountNumber());
+       struk.CetakStruk(7,0);
         }else{
             screen.displayMessageLine("Uang tidak cukup");
             start = false;
