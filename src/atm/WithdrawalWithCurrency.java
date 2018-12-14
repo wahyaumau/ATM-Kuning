@@ -52,15 +52,18 @@ public class WithdrawalWithCurrency extends Transaction {
                    cashDispenser.dispenseCash(amount);
                    super.getBankDatabase().debit(super.getAccountNumber(), amount);
                    System.out.println("Your cash has been dispensed. please take your cash now");
+                   DateTimeFormatter dtf = DateTimeFormatter.ofPattern("HH:mm:ss dd/MM/yyyy");
+                    LocalDateTime now = LocalDateTime.now();
+                    super.getBankDatabase().tulisHistory(super.getAccountNumber(),"Mengambil uang di bank sebanyak $" + amount 
+       + " " + dtf.format(now));
+                    Struk struk = new Struk(amount, super.getAccountNumber());
+                    struk.CetakStruk(1,0);
+
                } 
                    
             }
            else System.out.print("Money in dispenser not available");
        }
-       DateTimeFormatter dtf = DateTimeFormatter.ofPattern("HH:mm:ss dd/MM/yyyy");
-       LocalDateTime now = LocalDateTime.now();
-       super.getBankDatabase().tulisHistory(super.getAccountNumber(),"Mengambil uang di bank sebanyak $" + amount 
-       + " " + dtf.format(now));
 
    } 
 
