@@ -15,6 +15,7 @@ import java.time.format.DateTimeFormatter;
 public class BayarUKT extends Transaction {
     private int UKT;
     private int AccountReceiver; 
+    private int BAYARUKT = 4;
      private Keypad keypad;
    public BayarUKT (int userAccountNumber, Screen atmScreen, BankDatabase atmBankDatabase,Keypad atmKeypad){       
        super(userAccountNumber,atmScreen, atmBankDatabase);
@@ -33,6 +34,8 @@ public class BayarUKT extends Transaction {
        LocalDateTime now = LocalDateTime.now();
    super.getBankDatabase().tulisHistory(super.getAccountNumber(),"Membayar UKT sebesar" + UKT + " " +
            dtf.format(now));
+   Struk struk = new Struk(UKT,super.getAccountNumber());
+   struk.CetakStruk(BAYARUKT,AccountReceiver);
    }
    
     private int displayMenuOfAmounts(){  
