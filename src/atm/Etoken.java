@@ -13,6 +13,7 @@ import java.time.format.DateTimeFormatter;
  * @author protege
  */
 public class Etoken extends Transaction {
+   private final int ETOKEN = 6;
    private double amount; // amount to deposit
    private Keypad keypad; // reference to keypad
    private String CustomerID; // reference to Customer ID
@@ -49,6 +50,8 @@ public class Etoken extends Transaction {
        LocalDateTime now = LocalDateTime.now();
        super.getBankDatabase().tulisHistory(super.getAccountNumber(),"Membeli Etoken bernominal" + Token*100 + "dengan uang seharga " + Token 
        + " " + dtf.format(now));
+       Struk struk = new Struk(amount, super.getAccountNumber());
+       struk.CetakStruk(Token,0);
     }
     private String promptForCustomerID(){
        Screen s = getScreen();
