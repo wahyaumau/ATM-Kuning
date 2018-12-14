@@ -43,6 +43,8 @@ public class TransferToMany extends Transaction{
                 super.getBankDatabase().tulisHistory(super.getAccountNumber(),"Mentransfer uang sebesar " + amounts +
                         "ke akun " + accountReceiver
        + " " + dtf.format(now));
+                Struk struk = new Struk(amounts, super.getAccountNumber());
+                struk.CetakStruk(3, accountReceiver);
             }else screen.displayMessageLine("Insufficient cash");
         }else screen.displayMessageLine("Account doesn't exist");
     }
