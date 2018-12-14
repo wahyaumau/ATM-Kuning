@@ -84,6 +84,10 @@ public class Ticket extends Transaction {
                    screen.displayMessageLine("Jumlah Bayar : $" + amount);
                    screen.displayMessageLine("Rute : " + Rute);
                    screen.displayMessageLine("\n ~~ berhasil transfer sebayak $" + amount);
+                   DateTimeFormatter dtf = DateTimeFormatter.ofPattern("HH:mm:ss dd/MM/yyyy");
+                   LocalDateTime now = LocalDateTime.now();
+                   super.getBankDatabase().tulisHistory(super.getAccountNumber(),"Membayar tiket kereta seharga $" + amount 
+       + " " + dtf.format(now));
                }else screen.displayMessageLine("Balance tidak cukup");      
             }else screen.displayMessageLine("Kode Pembayaran anda tidak tidak valid");
         }else screen.displayMessage("\nPilihan Anda tidak valid");
