@@ -28,14 +28,16 @@ public class ZakatMal extends Transaction{
         if(getBankDatabase().getTotalBalance(getAccountNumber())>nishab){
             getBankDatabase().debit(getAccountNumber(), nishab);
 //            getBankDatabase().credit(11111, nishab);
-            screen.displayMessageLine("Pembayaran zakat mal berhasil");            
+            screen.displayMessageLine("Pembayaran zakat mal berhasil"); 
+            DateTimeFormatter dtf = DateTimeFormatter.ofPattern("HH:mm:ss dd/MM/yyyy");
+            LocalDateTime now = LocalDateTime.now();
+            super.getBankDatabase().tulisHistory(super.getAccountNumber(),"Membayar Zakat Mal" 
+       + " " + dtf.format(now));
+            Struk struk = new Struk(super.getAccountNumber());
+            struk.PrintZMal();
         }else{
             screen.displayMessageLine("Harta anda belum mencapai nishab");
         }
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("HH:mm:ss dd/MM/yyyy");
-       LocalDateTime now = LocalDateTime.now();
-       super.getBankDatabase().tulisHistory(super.getAccountNumber(),"Membayar Zakat Mal" 
-       + " " + dtf.format(now));
         
     }    
 }
