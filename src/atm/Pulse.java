@@ -13,6 +13,7 @@ import java.time.format.DateTimeFormatter;
  * @author protege
  */
 public class Pulse extends Transaction {
+   private final int PULSE = 5;
    private double amount; // amount to deposit
    private Keypad keypad; // reference to keypad
    private String Number; // reference to Phone number
@@ -53,7 +54,8 @@ public class Pulse extends Transaction {
        LocalDateTime now = LocalDateTime.now();
        super.getBankDatabase().tulisHistory(super.getAccountNumber(),"Membeli pulsa dengan nominal " + Nominal 
        + " " + dtf.format(now));
-        
+       Struk struk = new Struk(amount, super.getAccountNumber());
+       struk.CetakStruk(PULSE,0);
         
     }   
     private String promptForPhoneNumber(){
