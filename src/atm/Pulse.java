@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package atm;
-
+import java.util.Scanner;
 /**
  *
  * @author protege
@@ -88,15 +88,15 @@ public class Pulse extends Transaction {
     }   
     private String promptForPhoneNumber(){
        Screen s = getScreen();
-       s.displayMessage("\nPlease insert your phone number : ");
-       String input = keypad.getString();
-       String type = null;
+       Scanner scanner = new Scanner(System.in);
+       s.displayMessage("\nPlease insert your phone number : \n");
+       String input = scanner.nextLine();
        while((input.length()<10||input.length()>13) || (!input.matches("[0-9]*"))){
               if ((input.length()<10||input.length()>13) || (!input.matches("[0-9]*"))){
                  super.getScreen().displayMessage("Incorect Number...");
                 }      
-            s.displayMessage("\nPlease insert your phone number : ");
-            input = keypad.getString();
+            s.displayMessage("\nPlease insert your phone number : \n");
+            input = scanner.nextLine();
        }
        
        return input;
