@@ -49,14 +49,16 @@ public class Withdrawal extends Transaction {
            if(cashDispenser.isSufficientCashAvailable(amount)){
                cashDispenser.dispenseCash(amount);
                getBankDatabase().debit(getAccountNumber(), amount);
-           }
-           screen.displayMessageLine("Your cash has been dispensed. Please take your cash now");           
-           DateTimeFormatter dtf = DateTimeFormatter.ofPattern("HH:mm:ss dd/MM/yyyy");
-       LocalDateTime now = LocalDateTime.now();
-       super.getBankDatabase().tulisHistory(super.getAccountNumber(),"Mengambil uang di bank sebanyak $" + amount 
-       + " " + dtf.format(now));
-       struk = new Struk(amount,super.getAccountNumber());
-       struk.CetakStruk(WITHDRAWAL,0);
+               screen.displayMessageLine("Your cash has been dispensed. Please take your cash now");           
+               DateTimeFormatter dtf = DateTimeFormatter.ofPattern("HH:mm:ss dd/MM/yyyy");
+               LocalDateTime now = LocalDateTime.now();
+               super.getBankDatabase().tulisHistory(super.getAccountNumber(),"Mengambil uang di bank sebanyak $" + amount 
+               + " " + dtf.format(now));
+               struk = new Struk(amount,super.getAccountNumber());
+               struk.CetakStruk(WITHDRAWAL,0);
+           }else{
+               screen.displayMessageLine("\nFailed Transaction, Please Call 000010005 or Go");
+           }  
        }
        
        
