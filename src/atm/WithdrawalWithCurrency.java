@@ -40,7 +40,7 @@ public class WithdrawalWithCurrency extends Transaction {
    public void execute() {
        amount = Amount();
      //  System.out.println(amount);
-      display = displayMenuOfCurrency();
+       display = displayMenuOfCurrency();
        if(display == CANCELED)
            super.getScreen().displayMessageLine("Canceling Transaction ...");
        else {
@@ -87,11 +87,11 @@ public class WithdrawalWithCurrency extends Transaction {
       while (userChoice == 0) {
          // display the withdrawal menu
          screen.displayMessageLine("\nCurrency Menu:");
-         screen.displayMessageLine("1 - $20");
-         screen.displayMessageLine("2 - $40");
-         screen.displayMessageLine("3 - $60");
-         screen.displayMessageLine("4 - $100");
-         screen.displayMessageLine("5 - $200");
+         screen.displayMessageLine("1 - $5");
+         screen.displayMessageLine("2 - $10");
+         screen.displayMessageLine("3 - $20");
+         screen.displayMessageLine("4 - $50");
+         screen.displayMessageLine("5 - $100");
          screen.displayMessageLine("6 - Cancel transaction");
          screen.displayMessage("\nChoose a Currency: ");
 
@@ -100,83 +100,84 @@ public class WithdrawalWithCurrency extends Transaction {
          // determine how to proceed based on the input value
          switch (input) {
             case 1:             
-               cur = nominal/20;
+               cur = nominal/5;
                System.out.println(nominal+"$ denomination of "+cur+ "pieces"); 
                break;
             case 2:
-               cur = nominal/40;
-               if(nominal%40!=0){
-                   temp = (int) (nominal-(cur*40));
+               cur = nominal/10;
+               if(nominal%10!=0){
+                   temp = (int) (nominal-(cur*10));
                    System.out.println(nominal+"$ denomination of :"); 
-                   System.out.println(cur+ "pieces of "+40+"$");
+                   System.out.println(cur+ "pieces of "+10+"$");
                    System.out.println(1+ "pieces of "+temp+"$");
                }
                else{ 
                    System.out.println(nominal+"$ denomination of :");
-                   System.out.println(cur+ "pieces of "+40+"$");
+                   System.out.println(cur+ "pieces of "+10+"$");
                }
                 break;
             case 3: 
-               cur = nominal/60;
-               if(nominal%60!=0){
-                   temp = (int) (nominal-(cur*60));
+               cur = nominal/20;
+               if(nominal%20!=0){
+                   temp = (int) (nominal-(cur*20));
                    System.out.println(nominal+"$ denomination of :"); 
-                   System.out.println(cur+ "pieces of "+60+"$");
-                   if (temp % 40==0){
-                       System.out.println((temp/40)+ "pieces of "+40+"$");
+                   System.out.println(cur+ "pieces of "+20+"$");
+                   if (temp % 10==0){
+                       System.out.println((temp/10)+ "pieces of "+10+"$");
                    }
-                   else if (temp % 20==0){
-                            System.out.println((temp/20)+ "pieces of "+20+"$");
-                        }
-                        else{ 
-                            System.out.println(nominal+"$ denomination of :");
-                            System.out.println(cur+ "pieces of "+60+"$");
+                   else if (temp % 5==0){
+                            System.out.println((temp/5)+ "pieces of "+5+"$");
                         }
                }
+               else{ 
+                    System.out.println(nominal+"$ denomination of :");
+                    System.out.println(cur+ "pieces of "+20+"$");
+                }
+               
                 break;
             case 4:
+               cur = nominal/50;
+               if(nominal%50!=0){
+                   temp = (int) (nominal-(cur*50));
+                   System.out.println(nominal+"$ denomination of :"); 
+                   System.out.println(cur+ "pieces of "+50+"$");
+                   if (temp % 20==0){
+                       System.out.println((temp/20)+ "pieces of "+20+"$");
+                   }
+                   else if (temp % 10==0){
+                       System.out.println((temp/10)+ "pieces of "+10+"$");
+                   }
+                   else if (temp % 5==0){
+                       System.out.println((temp/5)+ "pieces of "+5+"$");
+                   }
+               }
+               else{ 
+                   System.out.println(nominal+"$ denomination of :");
+                   System.out.println(cur+ "pieces of "+50+"$");
+               }
+                break;
+            case 5:
                cur = nominal/100;
                if(nominal%100!=0){
                    temp = (int) (nominal-(cur*100));
                    System.out.println(nominal+"$ denomination of :"); 
                    System.out.println(cur+ "pieces of "+100+"$");
-                   if (temp % 60==0){
-                       System.out.println((temp/60)+ "pieces of "+60+"$");
-                   }
-                   else if (temp % 40==0){
-                       System.out.println((temp/40)+ "pieces of "+40+"$");
+                   if (temp % 50==0){
+                       System.out.println((temp/50)+ "pieces of "+50+"$");
                    }
                    else if (temp % 20==0){
                        System.out.println((temp/20)+ "pieces of "+20+"$");
+                   }
+                   else if (temp % 10==0){
+                       System.out.println((temp/10)+ "pieces of "+10+"$");
+                   }
+                   else if (temp % 5==0){
+                       System.out.println((temp/5)+ "pieces of "+5+"$");
                    }
                }
                else{ 
                    System.out.println(nominal+"$ denomination of :");
                    System.out.println(cur+ "pieces of "+100+"$");
-               }
-                break;
-            case 5:
-               cur = nominal/200;
-               if(nominal%200!=0){
-                   temp = (int) (nominal-(cur*200));
-                   System.out.println(nominal+"$ denomination of :"); 
-                   System.out.println(cur+ "pieces of "+200+"$");
-                   if (temp % 100==0){
-                       System.out.println((temp/100)+ "pieces of "+100+"$");
-                   }
-                   else if (temp % 60==0){
-                       System.out.println((temp/60)+ "pieces of "+60+"$");
-                   }
-                   else if (temp % 40==0){
-                       System.out.println((temp/40)+ "pieces of "+40+"$");
-                   }
-                   else if (temp % 20==0){
-                       System.out.println((temp/20)+ "pieces of "+20+"$");
-                   }
-               }
-               else{ 
-                   System.out.println(nominal+"$ denomination of :");
-                   System.out.println(cur+ "pieces of "+200+"$");
                }
                 break;
             case CANCELED: // the user chose to cancel
