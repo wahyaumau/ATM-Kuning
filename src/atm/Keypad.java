@@ -26,11 +26,11 @@ public class Keypad {
        int number;
         do {
             while (!input.hasNextInt()) {
-                System.out.println("\nAGAIN,That's not a number!");
+                System.out.println("\nTry Again,That's not a number!");
                 input.next(); // this is important!
             }
             number = input.nextInt();
-        } while (number <= 0);
+        } while (number < 0);
       
       return number; // user enters an integer
    } 
