@@ -5,15 +5,11 @@
  */
 package atm;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-
 /**
  *
  * @author protege
  */
 public class Pulse extends Transaction {
-   private final int PULSE = 5;
    private double amount; // amount to deposit
    private Keypad keypad; // reference to keypad
    private String Number; // reference to Phone number
@@ -34,15 +30,52 @@ public class Pulse extends Transaction {
 
     @Override
     public void execute() {
+        String type = null;
         Number = promptForPhoneNumber();
-        Operator = promptForOperator();
+        while (!"08".equals(Number.substring(0,2))){
+            if (!"08".equals(Number.substring(0,2))){
+                super.getScreen().displayMessage("Not Available Number ...");
+            }
+    //        Operator = promptForOperator();
+            Number = promptForPhoneNumber();
+        }
+        while (("084".equals(Number.substring(0,3)))||("086".equals(Number.substring(0,3)))||("080".equals(Number.substring(0,3)))){
+//            if (("084".equals(Number.substring(0,3)))||("086".equals(Number.substring(0,3)))||("080".equals(Number.substring(0,3)))){
+                super.getScreen().displayMessage("Not Available Number ...");
+//            }
+            Number = promptForPhoneNumber();
+        }
+        switch (Number.substring(0,3)){
+                    case "081" :
+                            type = "Telkomsel";
+                            break;
+                    case "082" :
+                            type = "Telkomsel";
+                            break;
+                    case "083" :
+                            type = "Axis";
+                            break;
+                    case "085" :
+                            type = "Telkomsel";
+                            break;
+                    case "087" :
+                            type = "XL";
+                            break;
+                    case "088" :
+                            type = "Smartfren";
+                            break;
+                    case "089" :
+                            type = "Three";
+                            break;
+                    default : type = "Not available";
+                }
         Nominal = promptForNominal();
            if(super.getBankDatabase().getAvailableBalance(super.getAccountNumber()) >= Nominal){
                    super.getBankDatabase().debit(super.getAccountNumber(), Nominal);
                    super.getScreen().displayMessage("\nTransaction to number : ");
                    super.getScreen().displayMessage(Number);
                    super.getScreen().displayMessage("\nThe operator is : ");
-                   super.getScreen().displayMessage(Operator);
+                   super.getScreen().displayMessage(type);
                    super.getScreen().displayMessage("\nNominal : ");
                    System.out.print(Nominal);
                    super.getScreen().displayMessage("\nTotal Payment :");
@@ -50,35 +83,31 @@ public class Pulse extends Transaction {
                    super.getScreen().displayMessage(" is Succesfull...");
            }
            else super.getScreen().displayMessage("Sorry. Your amount is not enough...");
-           DateTimeFormatter dtf = DateTimeFormatter.ofPattern("HH:mm:ss dd/MM/yyyy");
-       LocalDateTime now = LocalDateTime.now();
-       super.getBankDatabase().tulisHistory(super.getAccountNumber(),"Membeli pulsa dengan nominal " + Nominal 
-       + " " + dtf.format(now));
-       Struk struk = new Struk(amount, super.getAccountNumber());
-       struk.CetakStruk(PULSE,0);
+        
         
     }   
     private String promptForPhoneNumber(){
        Screen s = getScreen();
-       s.displayMessage("\nPlease insert your phone number (10-13Character) : ");
+       s.displayMessage("\nPlease insert your phone number : ");
        String input = keypad.getString();
+       String type = null;
        while((input.length()<10||input.length()>13) || (!input.matches("[0-9]*"))){
               if ((input.length()<10||input.length()>13) || (!input.matches("[0-9]*"))){
                  super.getScreen().displayMessage("Incorect Number...");
                 }      
-            s.displayMessage("\nPlease insert your phone number (10-13Character) : ");
+            s.displayMessage("\nPlease insert your phone number : ");
             input = keypad.getString();
-
        }
+       
        return input;
     }
     
-        private String promptForOperator(){
-       Screen s = getScreen();
-       s.displayMessage("\nPlease insert the operator : ");
-       String input = keypad.getString();
-       return input;
-   }
+//       private String promptForOperator(){
+//       Screen s = getScreen();
+//       s.displayMessage("\nPlease insert the operator : ");
+//       String input = keypad.getString();
+//       return input;
+//   }
     
     private int promptForNominal(){
        Screen s = getScreen();
