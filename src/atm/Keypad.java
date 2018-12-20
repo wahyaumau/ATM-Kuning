@@ -18,9 +18,23 @@ public class Keypad {
       input = new Scanner(System.in);    
    } 
 
+//   public int getInput() {
+//      return input.nextInt(); // user enters an integer
+//   } 
+   // input untuk validasi int
    public int getInput() {
-      return input.nextInt(); // user enters an integer
+       int number;
+        do {
+            while (!input.hasNextInt()) {
+                System.out.println("\nAGAIN,That's not a number!");
+                input.next(); // this is important!
+            }
+            number = input.nextInt();
+        } while (number <= 0);
+      
+      return number; // user enters an integer
    } 
+   
    //IRSA
    public String getString(){
        return input.next();
