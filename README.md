@@ -1,2 +1,2 @@
 # ATM-Kuning
-Repository Project ATM Kuning OOP Praktek
+Repository Project ATM Mata Kuliah OOP Praktek
